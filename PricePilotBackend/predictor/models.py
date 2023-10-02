@@ -23,12 +23,19 @@ class Car(models.Model):
     """
 
     _id = models.ObjectIdField()
-    brand = models.ForeignKey(CarBrand, on_delete=models.CASCADE)
-    model = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    price = models.FloatField()
     year = models.PositiveIntegerField()
-    kilometers = models.FloatField()
-    num_seats = models.PositiveIntegerField()
-
+    origin = models.CharField(max_length=100, default='France')
+    registration_date = models.DateField()
+    technical_inspection = models.BooleanField()
+    first_hand = models.BooleanField()
+    mileage = models.FloatField()
+    fuel_type = models.CharField(max_length=100)
+    transmission = models.CharField(max_length=100)
+    num_doors = models.PositiveIntegerField()
+    power = models.CharField(max_length=100)
+    co2_emission = models.FloatField()
     def __str__(self):
         """
         Returns a string representation of the car object, including the brand, model, and year.
@@ -41,11 +48,19 @@ class UserInput(models.Model):
     """
 
     _id = models.ObjectIdField()
-    brand = models.ForeignKey(CarBrand, on_delete=models.CASCADE)
-    model = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    price = models.FloatField()
     year = models.PositiveIntegerField()
-    kilometers = models.FloatField()
-    num_seats = models.PositiveIntegerField()
+    origin = models.CharField(max_length=100, default='France')
+    registration_date = models.DateField()
+    technical_inspection = models.BooleanField()
+    first_hand = models.BooleanField()
+    mileage = models.FloatField()
+    fuel_type = models.CharField(max_length=100)
+    transmission = models.CharField(max_length=100)
+    num_doors = models.PositiveIntegerField()
+    power = models.CharField(max_length=100)
+    co2_emission = models.FloatField()
 
     def __str__(self):
         """
