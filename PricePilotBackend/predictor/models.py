@@ -1,6 +1,5 @@
-from django.db import models
+from djongo import models
 
-# Create your models here.
 class CarBrand(models.Model):
     """
     Represents a car brand.
@@ -9,6 +8,7 @@ class CarBrand(models.Model):
     - name: A character field with a maximum length of 100 characters. It stores the name of the car brand.
     """
 
+    _id = models.ObjectIdField()
     name = models.CharField(max_length=100)
 
     def __str__(self):
@@ -22,6 +22,7 @@ class Car(models.Model):
     Represents a car object with information about the car's brand, model, year, kilometers, and number of seats.
     """
 
+    _id = models.ObjectIdField()
     brand = models.ForeignKey(CarBrand, on_delete=models.CASCADE)
     model = models.CharField(max_length=100)
     year = models.PositiveIntegerField()
@@ -39,6 +40,7 @@ class UserInput(models.Model):
     Represents user input for a car, including the brand, model, year, kilometers, and number of seats.
     """
 
+    _id = models.ObjectIdField()
     brand = models.ForeignKey(CarBrand, on_delete=models.CASCADE)
     model = models.CharField(max_length=100)
     year = models.PositiveIntegerField()
