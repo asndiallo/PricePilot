@@ -8,7 +8,7 @@ class CarBrand(models.Model):
     - name: A character field with a maximum length of 100 characters. It stores the name of the car brand.
     """
 
-    _id = models.ObjectIdField()
+    _id = models.ObjectIdField(primary_key=True, default=None)
     name = models.CharField(max_length=100)
 
     def __str__(self):
@@ -22,7 +22,7 @@ class Car(models.Model):
     Represents a car object with information about the car's brand, model, year, kilometers, and number of seats.
     """
 
-    _id = models.ObjectIdField()
+    _id = models.ObjectIdField(default=None)
     name = models.CharField(max_length=100)
     price = models.FloatField()
     year = models.PositiveIntegerField()
@@ -36,6 +36,7 @@ class Car(models.Model):
     num_doors = models.PositiveIntegerField()
     power = models.CharField(max_length=100)
     co2_emission = models.FloatField()
+
     def __str__(self):
         """
         Returns a string representation of the car object, including the brand, model, and year.
@@ -47,7 +48,7 @@ class UserInput(models.Model):
     Represents user input for a car, including the brand, model, year, kilometers, and number of seats.
     """
 
-    _id = models.ObjectIdField()
+    _id = models.ObjectIdField(default=None)
     name = models.CharField(max_length=100)
     price = models.FloatField()
     year = models.PositiveIntegerField()
