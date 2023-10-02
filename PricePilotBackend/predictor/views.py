@@ -5,7 +5,6 @@ from .serializers import CarSerializer
 
 class CarDataView(views.APIView):
     queryset = Car.objects.all()
-    serializer_class = CarSerializer
 
     def post(self, request, format=None):
         # Assuming request.data contains the data to be stored
