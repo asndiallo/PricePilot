@@ -17,8 +17,9 @@ from decouple import config
 MONGO_URI = config("MONGO_URI")
 client = MongoClient(MONGO_URI)
 
+db_name = config("DB_NAME")
 # connect to my MongoDB cluster
-db = client.get_database("price_pilot_db")
+db = client.get_database(db_name)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -106,7 +107,7 @@ WSGI_APPLICATION = "PricePilotBackend.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "djongo",
-        "NAME": "price_pilot_db",
+        "NAME": db_name,
         "CLIENT": {
             "host": MONGO_URI,
         },
