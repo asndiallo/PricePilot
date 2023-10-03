@@ -48,6 +48,27 @@ class CarNameItemSerializer(serializers.Serializer):
     name = serializers.CharField()
 
 
+class CarDataBulkView(generics.ListCreateAPIView):
+    """
+    A Django REST Framework view that handles the creation of car objects in bulk.
+
+    Attributes:
+        serializer_class (class): The serializer class used for serializing and deserializing car objects.
+        queryset (QuerySet): The queryset of car objects used for the view.
+    """
+
+    serializer_class = CarSerializer
+    queryset = Car.objects.all()
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data, many=True)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return response.Response(
+            serializer.data, status=status.HTTP_201_CREATED, headers=headers
+        )
+
 class CarNameListView(views.APIView):
     """
     API view that retrieves all car names from the database, extracts the brand and model information, and returns a list of distinct brand-model pairs to the client.
