@@ -10,6 +10,7 @@ import {
 
 // Pages
 import HomePage from '@/pages/home/home';
+import PredictorPage from '@/pages/predictor';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<Navbar />}>
         <Route path="/" element={<HomePage />} />
+        <Route path="/predictor" element={<PredictorPage />} />
       </Route>
     )
   );
