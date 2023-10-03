@@ -4,7 +4,7 @@ import { ModeToggle } from "../mode-toggle";
 const Navbar = () => {
     return ( 
         <>
-            <div className="flex w-full p-4">
+            <div className="flex w-full p-4 shadow-sm">
                 <NavLink to="/" className="flex-1 text-4xl font-bold text-slate-700 dark:text-slate-200 cursor-pointer">
                     Price Pilot
                 </NavLink>
