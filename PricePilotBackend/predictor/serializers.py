@@ -78,3 +78,9 @@ class UserInputSerializer(serializers.Serializer):
     length = serializers.FloatField()
     critair_rating = serializers.IntegerField()
     combined_consumption = serializers.FloatField()
+
+
+class CarNameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Car
+        fields = ['name']

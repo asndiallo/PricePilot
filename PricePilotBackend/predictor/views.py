@@ -1,6 +1,6 @@
 from rest_framework import generics, views, status, response
 from .models import Car
-from .serializers import CarSerializer, UserInputSerializer
+from .serializers import CarSerializer, UserInputSerializer, CarNameSerializer
 
 
 class CarDataView(generics.CreateAPIView):
@@ -33,3 +33,15 @@ class CarPricePredictionView(views.APIView):
             )
 
         return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CarNameListView(views.APIView):
+    def get(self, request, format=None):
+        # Retrieve all car names from the database
+        car_names = Car.objects.values_list("name", flat=True)
+
+        # Serialize the car names
+        serializer = CarNameSerializer(car_names, many=True)
+
+        # Return the serialized car names to the client
+        return response.Response(serializer.data, status=status.HTTP_200_OK)
