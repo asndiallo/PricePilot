@@ -19,22 +19,22 @@ class CarSerializer(serializers.ModelSerializer):
 
     Fields:
     - name: CharField representing the name of the car.
-    - price: FloatField representing the price of the car.
-    - year: IntegerField representing the year of the car.
-    - origin: BooleanField representing the origin of the car.
-    - registration_date: DateField representing the registration date of the car.
-    - technical_inspection: BooleanField representing whether the car has passed the technical inspection.
-    - first_hand: BooleanField representing whether the car is a first-hand car.
-    - mileage: FloatField representing the mileage of the car.
-    - fuel_type: IntegerField representing the fuel type of the car.
-    - transmission: IntegerField representing the transmission type of the car.
-    - num_doors: IntegerField representing the number of doors of the car.
-    - num_seats: IntegerField representing the number of seats of the car.
-    - power: IntegerField representing the power of the car.
-    - co2_emission: FloatField representing the CO2 emission of the car.
-    - length: FloatField representing the length of the car.
-    - critair_rating: IntegerField representing the Crit'Air rating of the car.
-    - combined_consumption: FloatField representing the combined fuel consumption of the car.
+    - price: CharField representing the price of the car.
+    - year: CharField representing the year of the car.
+    - origin: CharField representing the origin of the car.
+    - registration_date: CharField representing the registration date of the car.
+    - technical_inspection: CharField representing whether the car has passed the technical inspection.
+    - first_hand: CharField representing whether the car is a first-hand car.
+    - mileage: CharField representing the mileage of the car.
+    - fuel_type: CharField representing the fuel type of the car.
+    - transmission: CharField representing the transmission type of the car.
+    - num_doors: CharField representing the number of doors of the car.
+    - num_seats: CharField representing the number of seats of the car.
+    - power: CharField representing the power of the car.
+    - co2_emission: CharField representing the CO2 emission of the car.
+    - length: CharField representing the length of the car.
+    - critair_rating: CharField representing the Crit'Air rating of the car.
+    - combined_consumption: CharField representing the combined fuel consumption of the car.
     """
 
     class Meta:
@@ -62,25 +62,26 @@ class CarSerializer(serializers.ModelSerializer):
 
 class UserInputSerializer(serializers.Serializer):
     name = serializers.CharField()
-    price = serializers.FloatField()
-    year = serializers.IntegerField()
-    origin = serializers.BooleanField()
-    registration_date = serializers.DateField()
-    technical_inspection = serializers.BooleanField()
-    first_hand = serializers.BooleanField()
-    mileage = serializers.FloatField()
-    fuel_type = serializers.IntegerField()
-    transmission = serializers.IntegerField()
-    num_doors = serializers.IntegerField()
-    num_seats = serializers.IntegerField()
-    power = serializers.IntegerField()
-    co2_emission = serializers.FloatField()
-    length = serializers.FloatField()
-    critair_rating = serializers.IntegerField()
-    combined_consumption = serializers.FloatField()
+    price = serializers.CharField()
+    year = serializers.CharField()
+    origin = serializers.CharField()
+    registration_date = serializers.CharField()
+    technical_inspection = serializers.CharField()
+    first_hand = serializers.CharField()
+    mileage = serializers.CharField()
+    fuel_type = serializers.CharField()
+    transmission = serializers.CharField()
+    num_doors = serializers.CharField()
+    num_seats = serializers.CharField()
+    power = serializers.CharField()
+    co2_emission = serializers.CharField()
+    length = serializers.CharField()
+    critair_rating = serializers.CharField()
+    combined_consumption = serializers.CharField()
 
 
-class CarNameSerializer(serializers.ModelSerializer):
+class CarNameSerializer(serializers.Serializer):
+    name = serializers.CharField()
+
     class Meta:
-        model = Car
-        fields = ['name']
+        fields = ["name"]
