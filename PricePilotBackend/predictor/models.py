@@ -1,5 +1,6 @@
 from djongo import models
 
+
 class Car(models.Model):
     """
     Represents a car object with information about the car's brand, model, year, kilometers, and number of seats.
@@ -8,25 +9,24 @@ class Car(models.Model):
     _id = models.ObjectIdField(default=None)
     name = models.CharField(max_length=100)
     price = models.FloatField()
-    year = models.PositiveIntegerField()
-    origin = models.CharField(max_length=100, default='France')
+    year = models.IntegerField()
+    origin = models.BooleanField(default=0)
     registration_date = models.DateField()
-    technical_inspection = models.BooleanField(default=False)
+    technical_inspection = models.BooleanField(default=0)
     first_hand = models.BooleanField()
     mileage = models.FloatField()
-    fuel_type = models.CharField(max_length=100)
-    transmission = models.CharField(max_length=100)
-    num_doors = models.PositiveIntegerField()
-    num_seats = models.PositiveIntegerField()
-    power = models.CharField(max_length=100)
+    fuel_type = models.IntegerField(default=0)
+    transmission = models.IntegerField(default=0)
+    num_doors = models.IntegerField()
+    num_seats = models.IntegerField()
+    power = models.IntegerField(default=0)
     co2_emission = models.FloatField()
     length = models.FloatField()
-    trunk_volume = models.FloatField()
     critair_rating = models.IntegerField()
-    combined_consumption = models.CharField(max_length=100)
+    combined_consumption = models.FloatField(default=0.0)
 
     def __str__(self):
         """
         Returns a string representation of the car object, including the brand, model, and year.
         """
-        return f'{self.brand} {self.model} - {self.year}'
+        return f"{self.name} - {self.year}"
