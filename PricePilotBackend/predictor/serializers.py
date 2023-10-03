@@ -20,7 +20,7 @@ class CarSerializer(serializers.ModelSerializer):
     Fields:
     - name: CharField representing the name of the car.
     - price: FloatField representing the price of the car.
-    - year: PositiveIntegerField representing the year of the car.
+    - year: IntegerField representing the year of the car.
     - origin: CharField representing the origin of the car.
     - registration_date: DateField representing the registration date of the car.
     - technical_inspection: BooleanField representing whether the car has passed the technical inspection.
@@ -28,8 +28,8 @@ class CarSerializer(serializers.ModelSerializer):
     - mileage: FloatField representing the mileage of the car.
     - fuel_type: CharField representing the fuel type of the car.
     - transmission: CharField representing the transmission type of the car.
-    - num_doors: PositiveIntegerField representing the number of doors of the car.
-    - num_seats: PositiveIntegerField representing the number of seats of the car.
+    - num_doors: IntegerField representing the number of doors of the car.
+    - num_seats: IntegerField representing the number of seats of the car.
     - power: CharField representing the power of the car.
     - co2_emission: FloatField representing the CO2 emission of the car.
     - length: FloatField representing the length of the car.
@@ -60,3 +60,23 @@ class CarSerializer(serializers.ModelSerializer):
             "critair_rating",
             "combined_consumption",
         ]
+
+
+class UserInputSerializer(serializers.Serializer):
+    name = serializers.CharField()
+    price = serializers.FloatField()
+    year = serializers.IntegerField()
+    origin = serializers.BooleanField()
+    registration_date = serializers.DateField()
+    technical_inspection = serializers.BooleanField()
+    first_hand = serializers.BooleanField()
+    mileage = serializers.FloatField()
+    fuel_type = serializers.IntegerField()
+    transmission = serializers.IntegerField()
+    num_doors = serializers.IntegerField()
+    num_seats = serializers.IntegerField()
+    power = serializers.IntegerField()
+    co2_emission = serializers.FloatField()
+    length = serializers.FloatField()
+    critair_rating = serializers.IntegerField()
+    combined_consumption = serializers.FloatField()
