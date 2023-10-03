@@ -50,18 +50,26 @@ class CarNameItemSerializer(serializers.Serializer):
 
 class CarNameListView(views.APIView):
     def get(self, request, format=None):
-        # Retrieve all car names from the database
-        car_names = Car.objects.values_list("name", flat=True)
+        # Retrieve all car names from the database and remove None or empty names
+        car_names = filter(None, Car.objects.values_list("name", flat=True))
 
-        # Serialize the car names using CarNameItemSerializer
-        serializer = CarNameItemSerializer(
-            data=[{"name": name} for name in car_names], many=True
-        )
-
-        if serializer.is_valid():
-            # Return the serialized car names to the client
-            return response.Response(serializer.data, status=status.HTTP_200_OK)
-        else:
-            return response.Response(
-                serializer.errors, status=status.HTTP_400_BAD_REQUEST
+        # Extract brand and model and create a list of distinct brand-model pairs
+        brand_model_pairs = [
+            {"brand": brand, "model": model}
+            for brand, model in (
+                name.split(" ", 1) if " " in name else (name, "") for name in car_names
             )
+        ]
+
+        # Use a set to filter out duplicates
+        unique_brand_model_pairs = []
+        seen_pairs = set()
+        for pair in brand_model_pairs:
+            # Convert dictionary to tuple for hashability
+            pair_tuple = tuple(pair.items())
+            if pair_tuple not in seen_pairs:
+                seen_pairs.add(pair_tuple)
+                unique_brand_model_pairs.append(pair)
+
+        # Return the list of distinct brand-model pairs to the client
+        return response.Response(unique_brand_model_pairs, status=status.HTTP_200_OK)
