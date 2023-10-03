@@ -49,11 +49,23 @@ class CarNameItemSerializer(serializers.Serializer):
 
 
 class CarNameListView(views.APIView):
+    """
+    API view that retrieves all car names from the database, extracts the brand and model information, and returns a list of distinct brand-model pairs to the client.
+    """
+
     def get(self, request, format=None):
-        # Retrieve all car names from the database and remove None or empty names
+        """
+        Retrieves all car names from the database, extracts the brand and model information, and returns a list of distinct brand-model pairs to the client.
+
+        Args:
+            request: The request object.
+            format: The format of the response data (default: None).
+
+        Returns:
+            A response containing the list of distinct brand-model pairs.
+        """
         car_names = filter(None, Car.objects.values_list("name", flat=True))
 
-        # Extract brand and model and create a list of distinct brand-model pairs
         brand_model_pairs = [
             {"brand": brand, "model": model}
             for brand, model in (
@@ -61,15 +73,12 @@ class CarNameListView(views.APIView):
             )
         ]
 
-        # Use a set to filter out duplicates
         unique_brand_model_pairs = []
         seen_pairs = set()
         for pair in brand_model_pairs:
-            # Convert dictionary to tuple for hashability
             pair_tuple = tuple(pair.items())
             if pair_tuple not in seen_pairs:
                 seen_pairs.add(pair_tuple)
                 unique_brand_model_pairs.append(pair)
 
-        # Return the list of distinct brand-model pairs to the client
         return response.Response(unique_brand_model_pairs, status=status.HTTP_200_OK)
