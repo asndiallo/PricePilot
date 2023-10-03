@@ -32,6 +32,7 @@ class CarSerializer(serializers.ModelSerializer):
     - num_seats: CharField representing the number of seats of the car.
     - power: CharField representing the power of the car.
     - co2_emission: CharField representing the CO2 emission of the car.
+    - trunk_volume: CharField representing the trunk volume of the car.
     - length: CharField representing the length of the car.
     - critair_rating: CharField representing the Crit'Air rating of the car.
     - combined_consumption: CharField representing the combined fuel consumption of the car.
@@ -54,6 +55,7 @@ class CarSerializer(serializers.ModelSerializer):
             "num_seats",
             "power",
             "co2_emission",
+            "trunk_volume",
             "length",
             "critair_rating",
             "combined_consumption",
@@ -75,6 +77,7 @@ class UserInputSerializer(serializers.Serializer):
     num_seats = serializers.CharField()
     power = serializers.CharField()
     co2_emission = serializers.CharField()
+    trunk_volume = serializers.CharField()
     length = serializers.CharField()
     critair_rating = serializers.CharField()
     combined_consumption = serializers.CharField()
