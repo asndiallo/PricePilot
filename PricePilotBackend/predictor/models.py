@@ -21,6 +21,7 @@ class Car(models.Model):
     num_seats = models.CharField(max_length=100, null=True)
     power = models.CharField(max_length=100, null=True)
     co2_emission = models.CharField(max_length=100, null=True)
+    trunk_volume = models.CharField(max_length=100, null=True)
     length = models.CharField(max_length=100, null=True)
     critair_rating = models.CharField(max_length=100, null=True)
     combined_consumption = models.CharField(max_length=100, null=True)
