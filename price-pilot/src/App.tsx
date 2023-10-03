@@ -8,12 +8,15 @@ import {
   Route,
 } from "react-router-dom";
 
+// Pages
+import HomePage from '@/pages/home/home';
+
 function App() {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Navbar />}>
-        {/* <Route path="home" element={<Contact />} /> */}
+        <Route path="/" element={<HomePage />} />
       </Route>
     )
   );

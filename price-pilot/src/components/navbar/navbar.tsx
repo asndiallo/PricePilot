@@ -5,12 +5,12 @@ const Navbar = () => {
     return ( 
         <>
             <div className="flex w-full p-4">
-                <NavLink to="/home" className="flex-1 text-4xl font-bold text-slate-700 dark:text-slate-200 cursor-pointer">
+                <NavLink to="/" className="flex-1 text-4xl font-bold text-slate-700 dark:text-slate-200 cursor-pointer">
                     Price Pilot
                 </NavLink>
                 <ModeToggle />
             </div>
-            <div>
+            <div className="h-full">
                 <Outlet />
             </div>
         </>
