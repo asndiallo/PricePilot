@@ -1,6 +1,6 @@
 pathlib
 pymongo
-decouple
+python-decouple
 requests
 lxml
 bs4
