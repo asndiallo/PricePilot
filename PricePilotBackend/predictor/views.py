@@ -29,7 +29,7 @@ class CarPricePredictionView(views.APIView):
 
         # Load the model using an absolute path
         model_path = os.path.join(current_dir, "models/linear_regression_model.joblib")
-        self.predictor = CarPricePredictor()
+        self.predictor = CarPricePredictor(model_path)
 
     def post(self, request, format=None):
         # Deserialize the user input
