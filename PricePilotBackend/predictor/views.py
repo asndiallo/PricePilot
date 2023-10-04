@@ -23,32 +23,47 @@ class CarDataView(generics.CreateAPIView):
 
 
 class CarPricePredictionView(views.APIView):
-    def __init__(self):
-        # Get the directory of the current file (predictor.py)
-        current_dir = os.path.dirname(os.path.abspath(__file__))
+    """
+    A view in a Django REST Framework API that handles the prediction of car prices.
 
-        # Load the model using an absolute path
-        model_path = os.path.join(current_dir, "models/dummy_linear_regression_model.joblib")
+    Methods:
+    - post: Handles the POST request to the view. It receives the user input data, validates it using the UserInputSerializer, preprocesses the input data, predicts the car price using the CarPricePredictor class, post-processes the prediction, and returns the predicted price to the client.
+    """
+
+    def __init__(self):
+        """
+        Initializes the CarPricePredictionView class.
+
+        Fields:
+        - predictor: An instance of the CarPricePredictor class that is used to preprocess and predict car prices. It is initialized with a trained model loaded from a file.
+        """
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        model_path = os.path.join(
+            current_dir, "models/dummy_linear_regression_model.joblib"
+        )
         self.predictor = CarPricePredictor(model_path)
 
     def post(self, request, format=None):
-        # Deserialize the user input
+        """
+        Handles the POST request to the view.
+
+        Args:
+        - request: The HTTP request object.
+        - format: The format of the response.
+
+        Returns:
+        - A response object with the predicted car price or validation errors.
+        """
         serializer = UserInputSerializer(data=request.data)
         if serializer.is_valid():
-            # Preprocess the input data
             preprocessed_input = self.predictor.preprocess_input(
                 serializer.validated_data
             )
-            # Predict the car price
             prediction = self.predictor.predict(preprocessed_input)
-            # Post process the prediction
             post_process_prediction = self.predictor.post_process_prediction(prediction)
-
-            # Return the prediction to the client
             return response.Response(
                 {"predicted_price": post_process_prediction}, status=status.HTTP_200_OK
             )
-
         return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
