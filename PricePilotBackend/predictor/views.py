@@ -28,7 +28,7 @@ class CarPricePredictionView(views.APIView):
         current_dir = os.path.dirname(os.path.abspath(__file__))
 
         # Load the model using an absolute path
-        model_path = os.path.join(current_dir, "models/linear_regression_model.joblib")
+        model_path = os.path.join(current_dir, "models/dummy_linear_regression_model.joblib")
         self.predictor = CarPricePredictor(model_path)
 
     def post(self, request, format=None):
