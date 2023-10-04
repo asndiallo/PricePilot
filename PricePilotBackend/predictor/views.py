@@ -3,7 +3,6 @@ from .models import Car
 from .serializers import (
     CarSerializer,
     UserInputSerializer,
-    CarNameSerializer,
     serializers,
 )
 
@@ -68,6 +67,7 @@ class CarDataBulkView(generics.ListCreateAPIView):
         return response.Response(
             serializer.data, status=status.HTTP_201_CREATED, headers=headers
         )
+
 
 class CarNameListView(views.APIView):
     """
