@@ -1,10 +1,10 @@
-import numpy as np  # Assuming we'll use numpy for handling data
+# import numpy as np  # Assuming we'll use numpy for handling data
 import joblib  # For loading the trained model
 
 
 class CarPricePredictor:
-    # def __init__(self, model_path):
-    #     self.model = joblib.load(model_path)  # Load our trained model
+    def __init__(self, model_path):
+        self.model = joblib.load(model_path)  # Load our trained model
 
     def predict(self, input_data):
         # Implement our prediction logic here using the loaded model
