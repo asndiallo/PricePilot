@@ -1,10 +1,12 @@
 from rest_framework import generics, views, status, response
+import os
 from .models import Car
 from .serializers import (
     CarSerializer,
     UserInputSerializer,
     serializers,
 )
+from .predictor import CarPricePredictor
 
 
 class CarDataView(generics.CreateAPIView):
@@ -21,20 +23,31 @@ class CarDataView(generics.CreateAPIView):
 
 
 class CarPricePredictionView(views.APIView):
+    def __init__(self):
+        # Get the directory of the current file (predictor.py)
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+
+        # Load the model using an absolute path
+        model_path = os.path.join(current_dir, "models/dummy_linear_regression_model.joblib")
+        self.predictor = CarPricePredictor(model_path)
+
     def post(self, request, format=None):
         # Deserialize the user input
         serializer = UserInputSerializer(data=request.data)
-        # if serializer.is_valid():
-            # Process the input data and use your trained model to predict the car price
-            # prediction = your_model.predict(serializer.validated_data)  # Use your actual prediction logic
+        if serializer.is_valid():
+            # Preprocess the input data
+            preprocessed_input = self.predictor.preprocess_input(
+                serializer.validated_data
+            )
+            # Predict the car price
+            prediction = self.predictor.predict(preprocessed_input)
+            # Post process the prediction
+            post_process_prediction = self.predictor.post_process_prediction(prediction)
 
-        # For now, let's just assume a dummy prediction for demonstration
-        prediction = 20000
-
-        # Return the prediction to the client
-        return response.Response(
-            {"predicted_price": prediction}, status=status.HTTP_200_OK
-        )
+            # Return the prediction to the client
+            return response.Response(
+                {"predicted_price": post_process_prediction}, status=status.HTTP_200_OK
+            )
 
         return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
