@@ -9,15 +9,15 @@ class CarPricePredictor:
     def predict(self, input_data):
         # Implement our prediction logic here using the loaded model
         # For simplicity, let's assume the model always predicts a constant value for demonstration
-        # Replace this with our actual prediction logic
+        # TODO: Replace this with our actual prediction logic
         return 20000  # Dummy prediction
 
     def preprocess_input(self, user_input):
-        # Implement any preprocessing needed for the input data
+        # TODO: Implement any preprocessing needed for the input data
         # For now, let's assume no preprocessing is needed
         return user_input
 
     def post_process_prediction(self, prediction):
-        # Implement any postprocessing needed for the prediction
+        # TODO: Implement any postprocessing needed for the prediction
         # For now, let's assume no postprocessing is needed
         return prediction
