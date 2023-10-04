@@ -1,5 +1,4 @@
 absl-py==1.4.0
-anaconda-client==1.11.1
 anaconda-navigator==2.4.0
 appdirs==1.4.4
 asgiref==3.7.2
@@ -8,7 +7,6 @@ atomicwrites==1.4.0
 backports.weakref==1.0.post1
 brotlipy==0.7.0
 cachetools==5.3.1
-clyent==1.2.2
 conda-build==3.23.3
 conda-repo-cli==1.0.41
 conda-verify==3.4.2
@@ -56,7 +54,6 @@ pyarrow==11.0.0
 pyasn1-modules==0.2.8
 pycurl==7.45.1
 PyDispatcher==2.0.5
-pyls-spyder==0.4.0
 pymongo==3.12.0
 PyQt5-sip==12.11.0
 pytest==7.1.2
