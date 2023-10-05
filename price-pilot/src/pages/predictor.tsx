@@ -24,6 +24,7 @@ import {
   } from "@/components/ui/select"
 import { Button } from "@/components/ui/button";
 import { UseModalStore } from "@/hooks/use-modal-store";
+import toast from "react-hot-toast";
 
 export interface CarNameInterface {
     brand: string;
@@ -104,6 +105,9 @@ const PredictorPage = () => {
         .then(res => {
             console.log("[SUBMIT_RESULT]", res.data);
             onOpen('prediction', { value: res.data.predicted_price });
+        })
+        .catch(error => {
+            toast.error("La connexion à l'API n'a pas pu se faire.");
         })
     }
 

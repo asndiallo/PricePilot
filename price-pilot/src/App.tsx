@@ -8,6 +8,8 @@ import {
   Route,
 } from "react-router-dom";
 
+import { Toaster } from "react-hot-toast";
+
 // Pages
 import HomePage from '@/pages/home/home';
 import PredictorPage from '@/pages/predictor';
@@ -28,6 +30,9 @@ function App() {
   return (
     <>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+          <div>
+            <Toaster />
+          </div>
           <ModalProvider />
           <RouterProvider router={router} />
       </ThemeProvider>
