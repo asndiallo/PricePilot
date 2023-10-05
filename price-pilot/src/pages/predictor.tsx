@@ -23,6 +23,7 @@ import {
     SelectValue,
   } from "@/components/ui/select"
 import { Button } from "@/components/ui/button";
+import { UseModalStore } from "@/hooks/use-modal-store";
 
 export interface CarNameInterface {
     brand: string;
@@ -34,7 +35,8 @@ const CONTAINER_CLASSES = "w-full max-w-4xl text-center";
 const PredictorPage = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [dateRegistration, setDateRegistration] = useState<Date | undefined>(new Date());
-
+    const { onOpen } = UseModalStore();
+    
     const [data, setData] = useState({
         name: "",
         year: 2015,
@@ -51,13 +53,13 @@ const PredictorPage = () => {
         co2_emission: 0.2,
         length: 1,
         critair_rating: 0,
-        combined_consumption: "",
+        combined_consumption: 0,
     });
 
     const MAX_STEP = Object.keys(data).length;
 
     useEffect(() => {
-        getCarNames()
+        getCarNames();
     }, [])
 
     useEffect(() => {
@@ -101,6 +103,7 @@ const PredictorPage = () => {
         })
         .then(res => {
             console.log("[SUBMIT_RESULT]", res.data);
+            onOpen('prediction', { value: res.data.predicted_price });
         })
     }
 
@@ -260,7 +263,7 @@ const PredictorPage = () => {
                 title="Consommation combinée"
                 className={CONTAINER_CLASSES}
             >
-                <Input placeholder="Consommation" value={data.combined_consumption} onChange={(e)=>handleUpdateData("combined_consumption", e.target.value)} />
+                <Input type="number" value={data.combined_consumption} onChange={(e)=>handleUpdateData("combined_consumption", parseInt(e.target.value))} />
             </Container>
 
             {/* Autres */}

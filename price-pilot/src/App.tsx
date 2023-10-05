@@ -11,6 +11,7 @@ import {
 // Pages
 import HomePage from '@/pages/home/home';
 import PredictorPage from '@/pages/predictor';
+import { ModalProvider } from './components/providers/modal-provider';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
   return (
     <>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+          <ModalProvider />
           <RouterProvider router={router} />
       </ThemeProvider>
     </>
