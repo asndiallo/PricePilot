@@ -20,43 +20,60 @@ To set up PricePilot for educational purposes, follow these steps:
 
 ### 1. Configuration
 
-- Copy the `.env.example` file into a new file named `.env`:
+- Copy the `.env.example` file into a new file named `.env` in both the project root and the `price-pilot` folder:
 
   ```bash
   cp .env.example .env
   ```
 
-  Fill in the necessary variables in the `.env` file. This file will hold important configuration information for your application.
+  Fill in the necessary variables in the `.env` files. These files will hold important configuration information for your application.
 
-### 2. Install Requirements
+### 2. Install Backend Requirements
 
-- Install the required dependencies listed in `requirements.txt` using pip:
+- Install the required dependencies listed in `requirements.txt` using pip in the project root:
 
   ```bash
   pip install -r requirements.txt
   ```
 
-### 3. Database Configuration
+### 3. Install Frontend Requirements
+
+- Navigate to the `price-pilot` folder and install the frontend dependencies listed in `package.json` using npm:
+
+  ```bash
+  cd price-pilot
+  npm install
+  ```
+
+### 4. Database Configuration
 
 - PricePilot uses MongoDB as the database. Make sure you have MongoDB installed and running or use [MongoAtlas](https://www.mongodb.com/atlas).
 
-### 4. Run Migrations
+### 5. Run Migrations
 
-- Run the database migrations to set up the initial database schema:
+- Run the database migrations to set up the initial database schema in the project root:
 
   ```bash
   python manage.py migrate
   ```
 
-### 5. Run the Server
+### 6. Run the Backend Server
 
-- Start the development server:
+- Start the development server in the project root:
 
   ```bash
   python manage.py runserver
   ```
 
-🛫 PricePilot is now ready for takeoff! Access the application at [http://localhost:8000](http://localhost:8000) and explore the world of predicted car prices for educational purposes.
+### 7. Run the Frontend Server
+
+- Start the frontend server in the `price-pilot` folder:
+
+  ```bash
+  npm run dev
+  ```
+
+🛫 PricePilot is now ready for takeoff! Access the application at [http://localhost:5173](http://localhost:5173) and explore the world of predicted car prices for educational purposes.
 
 ## Key Features
 
@@ -67,3 +84,12 @@ To set up PricePilot for educational purposes, follow these steps:
 - **Open-Source and Collaborative**: Join the community, contribute, and learn the art of predictive algorithms for accurate valuations.
 
 🚗 **Join us on this PricePilot Educational Journey!**
+
+### Frontend
+
+The frontend of PricePilot is located in the `price-pilot` folder. It is a React-powered application with the following key technologies:
+
+- **React**: The UI is built using React, providing an interactive and dynamic user interface.
+- **Vite**: Vite is used for fast, efficient development and building of the frontend.
+
+The `package.json` file contains all the necessary dependencies for the frontend. Additionally, an `.env` file is required in the `price-pilot` folder for environment-specific configurations. There's a `price-pilot/.env.example` for reference.
