@@ -30,6 +30,7 @@ To set up PricePilot for educational purposes, follow these steps:
 
 ### 2. Install Backend Requirements
 
+- Ensure you have **Python 3.10** installed. If not, you can download it from [Python Official Website](https://www.python.org/downloads/).
 - Install the required dependencies listed in `requirements.txt` using pip in the project root:
 
   ```bash
@@ -38,6 +39,7 @@ To set up PricePilot for educational purposes, follow these steps:
 
 ### 3. Install Frontend Requirements
 
+- Ensure you have **Node.js 18 or higher** installed. If not, you can download it from [Node.js Official Website](https://nodejs.org/).
 - Navigate to the `price-pilot` folder and install the frontend dependencies listed in `package.json` using npm:
 
   ```bash
