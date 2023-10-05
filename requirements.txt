@@ -9,3 +9,5 @@ tqdm
 django
 djongo
 whitenoise
+joblib
+numpy
