@@ -53,7 +53,7 @@ class CarPricePredictionView(views.APIView):
         Returns:
         - A response object with the predicted car price or validation errors.
         """
-        serializer = UserInputSerializer(data=request.data)
+        serializer = UserInputSerializer(data=request.data['data'])
         if serializer.is_valid():
             preprocessed_input = self.predictor.preprocess_input(
                 serializer.validated_data

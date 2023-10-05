@@ -1,3 +1,4 @@
+import json
 import numpy as np
 import joblib
 
@@ -23,11 +24,8 @@ class CarPricePredictor:
             float: Predicted car price.
         """
         try:
-            # Preprocess the input
-            preprocessed_input = self.preprocess_input(input_data)
-
             # Reshape the input as the model expects a 2D array
-            preprocessed_input = np.array(preprocessed_input).reshape(1, -1)
+            preprocessed_input = np.array(input_data).reshape(1, -1)
 
             # Predict using the loaded model
             prediction = self.model.predict(preprocessed_input)[0]
@@ -50,10 +48,20 @@ class CarPricePredictor:
             list: Preprocessed feature values.
         """
         # Define the order of features as in X_train and X_test
-        feature_order = ["year", "power", "combined_consumption", "mileage", "num_doors", "num_seats", "length"]
+        feature_order = [
+            "year",
+            "power",
+            "combined_consumption",
+            "mileage",
+            "num_doors",
+            "num_seats",
+            "length",
+        ]
+
+        user_input_dict = json.loads(json.dumps(user_input))
 
         # Extract relevant features from the input
-        input_features = [user_input.get(feature, 0) for feature in feature_order]
+        input_features = [user_input_dict.get(feature, 0) for feature in feature_order]
 
         # Handle missing or incorrect values (e.g., empty strings, None)
         input_features = [
