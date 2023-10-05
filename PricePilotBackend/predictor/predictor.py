@@ -1,23 +1,78 @@
-# import numpy as np  # Assuming we'll use numpy for handling data
-import joblib  # For loading the trained model
+import numpy as np
+import joblib
 
 
 class CarPricePredictor:
     def __init__(self, model_path):
-        self.model = joblib.load(model_path)  # Load our trained model
+        """
+        Initializes the CarPricePredictor with the trained model.
+
+        Parameters:
+            model_path (str): Path to the trained model.
+        """
+        self.model = joblib.load(model_path)
 
     def predict(self, input_data):
-        # Implement our prediction logic here using the loaded model
-        # For simplicity, let's assume the model always predicts a constant value for demonstration
-        # TODO: Replace this with our actual prediction logic
-        return 20000  # Dummy prediction
+        """
+        Predicts the car price using the trained model.
+
+        Parameters:
+            input_data (dict): Input data containing car features.
+
+        Returns:
+            float: Predicted car price.
+        """
+        try:
+            # Preprocess the input
+            preprocessed_input = self.preprocess_input(input_data)
+
+            # Reshape the input as the model expects a 2D array
+            preprocessed_input = np.array(preprocessed_input).reshape(1, -1)
+
+            # Predict using the loaded model
+            prediction = self.model.predict(preprocessed_input)[0]
+
+            # Post-process the prediction
+            post_processed_prediction = self.post_process_prediction(prediction)
+
+            return post_processed_prediction
+        except Exception as e:
+            return f"Prediction error: {str(e)}"
 
     def preprocess_input(self, user_input):
-        # TODO: Implement any preprocessing needed for the input data
-        # For now, let's assume no preprocessing is needed
-        return user_input
+        """
+        Preprocesses the input data.
+
+        Parameters:
+            user_input (dict): Input data containing car features.
+
+        Returns:
+            list: Preprocessed feature values.
+        """
+        # Define the order of features as in X_train and X_test
+        feature_order = ["year", "power", "combined_consumption", "mileage", "num_doors", "num_seats", "length"]
+
+        # Extract relevant features from the input
+        input_features = [user_input.get(feature, 0) for feature in feature_order]
+
+        # Handle missing or incorrect values (e.g., empty strings, None)
+        input_features = [
+            0 if feature == "" or feature is None else feature
+            for feature in input_features
+        ]
+
+        return input_features
 
     def post_process_prediction(self, prediction):
+        """
+        Postprocesses the prediction.
+
+        Parameters:
+            prediction (float): Predicted car price.
+
+        Returns:
+            float: Postprocessed car price.
+        """
         # TODO: Implement any postprocessing needed for the prediction
         # For now, let's assume no postprocessing is needed
         return prediction

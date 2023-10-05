@@ -38,9 +38,8 @@ class CarPricePredictionView(views.APIView):
         - predictor: An instance of the CarPricePredictor class that is used to preprocess and predict car prices. It is initialized with a trained model loaded from a file.
         """
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        model_path = os.path.join(
-            current_dir, "models/dummy_linear_regression_model.joblib"
-        )
+        path = "models/random_forest_model.joblib"
+        model_path = os.path.join(current_dir, path)
         self.predictor = CarPricePredictor(model_path)
 
     def post(self, request, format=None):
