@@ -1,29 +1,54 @@
-import numpy as np  # Assuming we'll use numpy for handling data
-import joblib  # For loading the trained model
+import numpy as np
+import joblib
 
 
 class CarPricePredictor:
     def __init__(self, model_path):
-        self.model = joblib.load(model_path)  # Load our trained model
+        """
+        Initializes the CarPricePredictor with the trained model.
+
+        Parameters:
+            model_path (str): Path to the trained model.
+        """
+        self.model = joblib.load(model_path)
 
     def predict(self, input_data):
-        # Preprocess the input
-        preprocessed_input = self.preprocess_input(input_data)
+        """
+        Predicts the car price using the trained model.
 
-        # Reshape the input as the model expects a 2D array
-        preprocessed_input = np.array(preprocessed_input).reshape(1, -1)
+        Parameters:
+            input_data (dict): Input data containing car features.
 
-        # Predict using the loaded model
-        prediction = self.model.predict(preprocessed_input)[
-            0
-        ]  # Take the first prediction
+        Returns:
+            float: Predicted car price.
+        """
+        try:
+            # Preprocess the input
+            preprocessed_input = self.preprocess_input(input_data)
 
-        # Post-process the prediction
-        post_processed_prediction = self.post_process_prediction(prediction)
+            # Reshape the input as the model expects a 2D array
+            preprocessed_input = np.array(preprocessed_input).reshape(1, -1)
 
-        return post_processed_prediction
+            # Predict using the loaded model
+            prediction = self.model.predict(preprocessed_input)[0]
+
+            # Post-process the prediction
+            post_processed_prediction = self.post_process_prediction(prediction)
+
+            return post_processed_prediction
+        except Exception as e:
+            return f"Prediction error: {str(e)}"
 
     def preprocess_input(self, user_input):
+        """
+        Preprocesses the input data.
+
+        Parameters:
+            user_input (dict): Input data containing car features.
+
+        Returns:
+            list: Preprocessed feature values.
+        """
         # Define the order of features as in X_train and X_test
         feature_order = ["year", "mileage", "power", "combined_consumption"]
 
@@ -39,6 +64,15 @@ class CarPricePredictor:
         return input_features
 
     def post_process_prediction(self, prediction):
+        """
+        Postprocesses the prediction.
+
+        Parameters:
+            prediction (float): Predicted car price.
+
+        Returns:
+            float: Postprocessed car price.
+        """
         # TODO: Implement any postprocessing needed for the prediction
         # For now, let's assume no postprocessing is needed
         return prediction
