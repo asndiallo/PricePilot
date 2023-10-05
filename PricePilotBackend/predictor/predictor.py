@@ -50,7 +50,7 @@ class CarPricePredictor:
             list: Preprocessed feature values.
         """
         # Define the order of features as in X_train and X_test
-        feature_order = ["year", "mileage", "power", "combined_consumption"]
+        feature_order = ["year", "power", "combined_consumption", "mileage", "num_doors", "num_seats", "length"]
 
         # Extract relevant features from the input
         input_features = [user_input.get(feature, 0) for feature in feature_order]
