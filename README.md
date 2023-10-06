@@ -1,3 +1,5 @@
+[![wakatime](https://wakatime.com/badge/user/1980556e-b47a-493f-a376-42da18f2955f/project/d999cab8-ff9b-4e53-bbee-513ad7203f02.svg)](https://wakatime.com/badge/user/1980556e-b47a-493f-a376-42da18f2955f/project/d999cab8-ff9b-4e53-bbee-513ad7203f02)
+
 # PricePilot - For Educational Purposes Only
 
 🚀 **PricePilot - Your Vehicle Pricing Navigator (Educational Purpose)**
