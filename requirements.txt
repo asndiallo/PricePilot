@@ -11,3 +11,10 @@ djongo
 whitenoise
 joblib
 numpy
+torch
+tensorflow
+scikit-learn
+xgboost
+seaborn
+matplotlib
+requests
