@@ -28,19 +28,6 @@ const HomePage = () => {
             <div className="flex gap-x-4">
                 <Card className="w-fit border border-black dark:border-white">
                     <CardHeader>
-                        <CardTitle>Liste des voitures</CardTitle>
-                        <CardDescription>Consulter à la liste des voitures</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <NavLink to="/list-vehicles">
-                            <Button variant="default" size="lg" className="font-bold">
-                                Consulter
-                            </Button>
-                        </NavLink>
-                    </CardContent>
-                </Card>
-                <Card className="w-fit border border-black dark:border-white">
-                    <CardHeader>
                         <CardTitle>Prédicteur de prix</CardTitle>
                         <CardDescription>Utiliser l'outil de prédicteur de prix</CardDescription>
                     </CardHeader>

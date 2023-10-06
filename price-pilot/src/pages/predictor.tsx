@@ -133,12 +133,6 @@ const PredictorPage = () => {
 
     return (
       <div className="flex flex-col gap-y-8 justify-center items-center w-full p-10">
-        {/* Title */}
-        <h1 className="text-2xl font-bold drop-shadow-sm">
-          Prédiction du prix de votre véhicule
-        </h1>
-        {/* Progression */}
-        <Progress value={(currentStep / MAX_STEP) * 100} />
         {/* Form */}
         <h1 className="text-2xl font-bold drop-shadow-sm">
           Caractéristiques de votre véhicule
