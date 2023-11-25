@@ -1,6 +1,7 @@
 import json
-import numpy as np
+
 import joblib
+import numpy as np
 
 
 class CarPricePredictor:

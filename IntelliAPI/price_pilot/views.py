@@ -1,12 +1,10 @@
-from rest_framework import generics, views, status, response
 import os
+
+from predictor import CarPricePredictor
+from rest_framework import generics, response, status, views
+
 from .models import Car
-from .serializers import (
-    CarSerializer,
-    UserInputSerializer,
-    serializers,
-)
-from .price_price import CarPricePredictor
+from .serializers import CarSerializer, UserInputSerializer, serializers
 
 
 class CarDataView(generics.CreateAPIView):
