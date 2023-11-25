@@ -1,9 +1,9 @@
 import os
 
-from predictor import CarPricePredictor
 from rest_framework import generics, response, status, views
 
 from .models import Car
+from .predictor import CarPricePredictor
 from .serializers import CarSerializer, UserInputSerializer, serializers
 
 
@@ -33,12 +33,12 @@ class CarPricePredictionView(views.APIView):
         Initializes the CarPricePredictionView class.
 
         Fields:
-        - price_price: An instance of the CarPricePredictor class that is used to preprocess and predict car prices. It is initialized with a trained model loaded from a file.
+        - price_pilot: An instance of the CarPricePredictor class that is used to preprocess and predict car prices. It is initialized with a trained model loaded from a file.
         """
         current_dir = os.path.dirname(os.path.abspath(__file__))
         path = "models/random_forest_model.joblib"
         model_path = os.path.join(current_dir, path)
-        self.price_price = CarPricePredictor(model_path)
+        self.price_pilot = CarPricePredictor(model_path)
 
     def post(self, request, format=None):
         """
@@ -53,11 +53,11 @@ class CarPricePredictionView(views.APIView):
         """
         serializer = UserInputSerializer(data=request.data["data"])
         if serializer.is_valid():
-            preprocessed_input = self.price_price.preprocess_input(
+            preprocessed_input = self.price_pilot.preprocess_input(
                 serializer.validated_data
             )
-            prediction = self.price_price.predict(preprocessed_input)
-            post_process_prediction = self.price_price.post_process_prediction(
+            prediction = self.price_pilot.predict(preprocessed_input)
+            post_process_prediction = self.price_pilot.post_process_prediction(
                 prediction
             )
             return response.Response(
