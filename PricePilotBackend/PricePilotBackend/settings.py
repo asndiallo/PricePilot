@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     # my apps
-    "predictor",  # Add our predictor app to the list of installed apps
+    "price_price",  # Add our price_price app to the list of installed apps
 ]
 
 REST_FRAMEWORK = {

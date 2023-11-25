@@ -6,7 +6,7 @@ from .serializers import (
     UserInputSerializer,
     serializers,
 )
-from .predictor import CarPricePredictor
+from .price_price import CarPricePredictor
 
 
 class CarDataView(generics.CreateAPIView):
@@ -35,12 +35,12 @@ class CarPricePredictionView(views.APIView):
         Initializes the CarPricePredictionView class.
 
         Fields:
-        - predictor: An instance of the CarPricePredictor class that is used to preprocess and predict car prices. It is initialized with a trained model loaded from a file.
+        - price_price: An instance of the CarPricePredictor class that is used to preprocess and predict car prices. It is initialized with a trained model loaded from a file.
         """
         current_dir = os.path.dirname(os.path.abspath(__file__))
         path = "models/random_forest_model.joblib"
         model_path = os.path.join(current_dir, path)
-        self.predictor = CarPricePredictor(model_path)
+        self.price_price = CarPricePredictor(model_path)
 
     def post(self, request, format=None):
         """
@@ -53,13 +53,15 @@ class CarPricePredictionView(views.APIView):
         Returns:
         - A response object with the predicted car price or validation errors.
         """
-        serializer = UserInputSerializer(data=request.data['data'])
+        serializer = UserInputSerializer(data=request.data["data"])
         if serializer.is_valid():
-            preprocessed_input = self.predictor.preprocess_input(
+            preprocessed_input = self.price_price.preprocess_input(
                 serializer.validated_data
             )
-            prediction = self.predictor.predict(preprocessed_input)
-            post_process_prediction = self.predictor.post_process_prediction(prediction)
+            prediction = self.price_price.predict(preprocessed_input)
+            post_process_prediction = self.price_price.post_process_prediction(
+                prediction
+            )
             return response.Response(
                 {"predicted_price": post_process_prediction}, status=status.HTTP_200_OK
             )
